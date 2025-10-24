@@ -1,4 +1,8 @@
 ﻿using System;
+<<<<<<< HEAD
+=======
+using System.Text;
+>>>>>>> 79d5d94d23df44bffe193f76d0c44c1986573959
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
@@ -7,7 +11,10 @@ using System.Windows.Media;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 
+<<<<<<< HEAD
 // Asumo que estas referencias son correctas
+=======
+>>>>>>> 79d5d94d23df44bffe193f76d0c44c1986573959
 using RabbitMQ.Shared.Models;
 using RabbitMQ.Shared.Utilities;
 using RabbitMQ.Shared.Services;
@@ -20,9 +27,12 @@ namespace RabbitMQReceiverWPF
         private const string Cola1 = "Cola1";
         private const string Cola2 = "Cola2";
 
+<<<<<<< HEAD
         private IModel? _channelHilo1;
         private IModel? _channelHilo2;
 
+=======
+>>>>>>> 79d5d94d23df44bffe193f76d0c44c1986573959
         public MainWindow()
         {
             InitializeComponent();
@@ -49,6 +59,7 @@ namespace RabbitMQReceiverWPF
         private void btnStartReceivers_Click(object sender, RoutedEventArgs e)
         {
             string host = txtHostReceiver.Text;
+<<<<<<< HEAD
 
             if (!int.TryParse(txtPort.Text, out int port) || port <= 0 || port > 65535)
             {
@@ -62,11 +73,17 @@ namespace RabbitMQReceiverWPF
             if (string.IsNullOrEmpty(host) || string.IsNullOrEmpty(user) || string.IsNullOrEmpty(pass))
             {
                 Log(lbLogHilo1, "Error: Debe ingresar Host, Usuario y Contraseña.", Brushes.Red);
+=======
+            if (string.IsNullOrEmpty(host))
+            {
+                Log(lbLogHilo1, "Error: Debe ingresar la IP del Host.");
+>>>>>>> 79d5d94d23df44bffe193f76d0c44c1986573959
                 return;
             }
 
             try
             {
+<<<<<<< HEAD
                 // Limpiar recursos anteriores para una reconexión limpia
                 _channelHilo1?.Dispose();
                 _channelHilo2?.Dispose();
@@ -74,14 +91,23 @@ namespace RabbitMQReceiverWPF
 
                 // 1. Conectar y declarar colas
                 _connectionService = new RabbitMqConnectionService(host, user, pass, port);
+=======
+                _connectionService?.Dispose();
+                _connectionService = new RabbitMqConnectionService(host, "proyecto", "admin123");
+>>>>>>> 79d5d94d23df44bffe193f76d0c44c1986573959
                 _connectionService.Connect();
 
                 _connectionService.DeclareQueue(Cola1);
                 _connectionService.DeclareQueue(Cola2);
 
+<<<<<<< HEAD
                 Log(lbLogHilo1, $"Conexión establecida como '{user}' en puerto {port}. Iniciando hilos de consumo...", Brushes.Green);
 
                 // 2. Iniciar los dos procesos (hilos) en paralelo
+=======
+                Log(lbLogHilo1, "Conexión establecida. Iniciando hilos de consumo...");
+
+>>>>>>> 79d5d94d23df44bffe193f76d0c44c1986573959
                 Task.Run(() => ProcesadorCola1_to_Cola2());
                 Task.Run(() => ConsumidorFinalCola2());
 
@@ -89,11 +115,16 @@ namespace RabbitMQReceiverWPF
             }
             catch (Exception ex)
             {
+<<<<<<< HEAD
                 Log(lbLogHilo1, $"Error al conectar o declarar: {ex.Message} (Host: {host})", Brushes.Red);
+=======
+                Log(lbLogHilo1, $"Error al conectar o declarar: {ex.Message}", Brushes.Red);
+>>>>>>> 79d5d94d23df44bffe193f76d0c44c1986573959
                 if (lblStatus != null) lblStatus.Content = "FALLÓ LA CONEXIÓN.";
             }
         }
 
+<<<<<<< HEAD
         private async Task ProcesadorCola1_to_Cola2()
         {
             try
@@ -114,6 +145,19 @@ namespace RabbitMQReceiverWPF
 
                     // SOLUCIÓN AL ERROR CS0308: Casting explícito
                     var receivedModel = (MessageModel)JsonUtil.Deserialize(body);
+=======
+        private void ProcesadorCola1_to_Cola2()
+        {
+            using (var channel = _connectionService!.Connection!.CreateModel())
+            {
+                channel.QueueDeclare(queue: Cola1, durable: true, exclusive: false, autoDelete: false, arguments: null);
+
+                var consumer = new EventingBasicConsumer(channel);
+                consumer.Received += (model, ea) =>
+                {
+                    var body = ea.Body.ToArray();
+                    var receivedModel = JsonUtil.Deserialize(body);
+>>>>>>> 79d5d94d23df44bffe193f76d0c44c1986573959
 
                     Log(lbLogHilo1, $"[CONSUMO C1] Recibido ID: {receivedModel.IdMensaje}. Generando réplicas...", Brushes.DarkRed);
 
@@ -130,6 +174,7 @@ namespace RabbitMQReceiverWPF
                         };
 
                         var bodyNuevo = JsonUtil.Serialize(replicaModel);
+<<<<<<< HEAD
 
                         _channelHilo1.BasicPublish(exchange: string.Empty, routingKey: Cola2, basicProperties: null, body: bodyNuevo);
                         Log(lbLogHilo1, $">>>>> [GENERADO A C2] Réplica #{i}", Brushes.Orange);
@@ -172,6 +217,33 @@ namespace RabbitMQReceiverWPF
 
                     // SOLUCIÓN AL ERROR CS0308: Casting explícito
                     var receivedModel = (MessageModel)JsonUtil.Deserialize(body);
+=======
+                        channel.BasicPublish(exchange: string.Empty, routingKey: Cola2, basicProperties: null, body: bodyNuevo);
+                        Log(lbLogHilo1, $">>>>> [GENERADO A C2] Réplica #{i}", Brushes.Orange);
+                    }
+
+                    channel.BasicAck(deliveryTag: ea.DeliveryTag, multiple: false);
+                };
+
+                Log(lbLogHilo1, $"Hilo 1 esperando mensajes en '{Cola1}'...");
+                channel.BasicConsume(queue: Cola1, autoAck: false, consumer: consumer);
+
+                Thread.Sleep(Timeout.Infinite);
+            }
+        }
+
+        private void ConsumidorFinalCola2()
+        {
+            using (var channel = _connectionService!.Connection!.CreateModel())
+            {
+                channel.QueueDeclare(queue: Cola2, durable: true, exclusive: false, autoDelete: false, arguments: null);
+
+                var consumer = new EventingBasicConsumer(channel);
+                consumer.Received += (model, ea) =>
+                {
+                    var body = ea.Body.ToArray();
+                    var receivedModel = JsonUtil.Deserialize(body);
+>>>>>>> 79d5d94d23df44bffe193f76d0c44c1986573959
 
                     receivedModel.TimestampProcesamiento = DateTime.UtcNow;
                     TimeSpan latencia = receivedModel.TimestampProcesamiento.Value - receivedModel.TimestampEnvio;
@@ -187,6 +259,7 @@ namespace RabbitMQReceiverWPF
 
                     Log(lbLogHilo2, displayMsg, color);
 
+<<<<<<< HEAD
                     _channelHilo2.BasicAck(deliveryTag: ea.DeliveryTag, multiple: false);
                 };
 
@@ -202,13 +275,25 @@ namespace RabbitMQReceiverWPF
             catch (Exception ex)
             {
                 Log(lbLogHilo2, $"Hilo 2 falló inesperadamente: {ex.Message}", Brushes.Red);
+=======
+                    channel.BasicAck(deliveryTag: ea.DeliveryTag, multiple: false);
+                };
+
+                Log(lbLogHilo2, $"Hilo 2 esperando mensajes en '{Cola2}' (Consumidor Final)...");
+                channel.BasicConsume(queue: Cola2, autoAck: false, consumer: consumer);
+
+                Thread.Sleep(Timeout.Infinite);
+>>>>>>> 79d5d94d23df44bffe193f76d0c44c1986573959
             }
         }
 
         protected override void OnClosed(EventArgs e)
         {
+<<<<<<< HEAD
             _channelHilo1?.Dispose();
             _channelHilo2?.Dispose();
+=======
+>>>>>>> 79d5d94d23df44bffe193f76d0c44c1986573959
             _connectionService?.Dispose();
             base.OnClosed(e);
         }

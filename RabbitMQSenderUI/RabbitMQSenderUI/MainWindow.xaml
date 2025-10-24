@@ -28,6 +28,7 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
+<<<<<<< HEAD
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
@@ -41,6 +42,18 @@
 
                 <Label Grid.Row="3" Content="Contraseña:" Margin="5"/>
                 <TextBox Grid.Row="3" Grid.Column="1" x:Name="txtPass" Margin="5"/>
+=======
+                </Grid.RowDefinitions>
+
+                <Label Grid.Row="0" Content="Host/IP:" Margin="5"/>
+                <TextBox Grid.Row="0" Grid.Column="1" x:Name="txtHost" Text="192.168.1.70" Margin="5"/>
+
+                <Label Grid.Row="1" Content="Usuario:" Margin="5"/>
+                <TextBox Grid.Row="1" Grid.Column="1" x:Name="txtUser" Text="proyecto" Margin="5"/>
+
+                <Label Grid.Row="2" Content="Contraseña:" Margin="5"/>
+                <TextBox Grid.Row="2" Grid.Column="1" x:Name="txtPass" Text="admin123" Margin="5"/>
+>>>>>>> 79d5d94d23df44bffe193f76d0c44c1986573959
             </Grid>
 
             <Separator Margin="0,15"/>
@@ -48,7 +61,11 @@
             <Label Content="🎯 Opciones" FontWeight="Bold"/>
 
             <StackPanel Orientation="Horizontal" Margin="5,5,5,10">
+<<<<<<< HEAD
                 <Label Content="Cantidad de mensajes a enviar:"/>
+=======
+                <Label Content="Cantidad de mensajes que desas enviar:"/>
+>>>>>>> 79d5d94d23df44bffe193f76d0c44c1986573959
                 <TextBox x:Name="txtQuantity" Text="10" Width="50" Margin="5,0"/>
             </StackPanel>
 

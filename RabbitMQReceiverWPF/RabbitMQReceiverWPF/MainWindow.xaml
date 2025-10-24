@@ -17,6 +17,7 @@
         </Grid.ColumnDefinitions>
 
         <StackPanel Grid.Row="0" Grid.ColumnSpan="2" Orientation="Horizontal" Margin="0,0,0,10">
+<<<<<<< HEAD
 
             <Label Content="Host/IP:" FontWeight="Bold"/>
             <TextBox x:Name="txtHostReceiver" Width="150" Margin="0,0,10,0"/>
@@ -32,6 +33,13 @@
 
             <Button x:Name="btnStartReceivers" Content="▶️ INICIAR RECEPTORES" Click="btnStartReceivers_Click" Padding="10,0" FontWeight="Bold"/>
         </StackPanel>
+=======
+            <Label Content="Host/IP:" FontWeight="Bold"/>
+            <TextBox x:Name="txtHostReceiver" Text="192.168.1.70" Width="150" Margin="0,0,10,0"/>
+            <Button x:Name="btnStartReceivers" Content="▶️ INICIAR RECEPTORES" Click="btnStartReceivers_Click" Padding="10,0" FontWeight="Bold"/>
+        </StackPanel>
+
+>>>>>>> 79d5d94d23df44bffe193f76d0c44c1986573959
         <Grid Grid.Row="1" Grid.Column="0" Margin="0,0,10,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
