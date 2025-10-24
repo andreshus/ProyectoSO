@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "XO4TCaSfemsU77FxGGEeZ2CQ/+hhgEc5gbzBR5j7VGfMzlXBCWXl9Sosz7jXk8bz6tDdAPAnT/yqED38Frvn4A==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\andre\\Desktop\\ProyectoRabbitMQFinal\\RabbitMQReceiverWPF\\RabbitMQReceiverWPF\\RabbitMQReceiverWPF.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\andre\\.nuget\\packages\\newtonsoft.json\\13.0.4\\newtonsoft.json.13.0.4.nupkg.sha512",
+    "C:\\Users\\andre\\.nuget\\packages\\rabbitmq.client\\5.1.2\\rabbitmq.client.5.1.2.nupkg.sha512"
+  ],
+  "logs": []
+}

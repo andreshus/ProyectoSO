@@ -1,0 +1,13 @@
+C:\Users\andre\Desktop\ProyectoRabbitMQFinal\RabbitMQShared\RabbitMQShared\bin\Debug\net8.0\RabbitMQShared.deps.json
+C:\Users\andre\Desktop\ProyectoRabbitMQFinal\RabbitMQShared\RabbitMQShared\bin\Debug\net8.0\RabbitMQShared.dll
+C:\Users\andre\Desktop\ProyectoRabbitMQFinal\RabbitMQShared\RabbitMQShared\bin\Debug\net8.0\RabbitMQShared.pdb
+C:\Users\andre\Desktop\ProyectoRabbitMQFinal\RabbitMQShared\RabbitMQShared\obj\Debug\net8.0\RabbitMQShared.csproj.AssemblyReference.cache
+C:\Users\andre\Desktop\ProyectoRabbitMQFinal\RabbitMQShared\RabbitMQShared\obj\Debug\net8.0\RabbitMQShared.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\andre\Desktop\ProyectoRabbitMQFinal\RabbitMQShared\RabbitMQShared\obj\Debug\net8.0\RabbitMQShared.AssemblyInfoInputs.cache
+C:\Users\andre\Desktop\ProyectoRabbitMQFinal\RabbitMQShared\RabbitMQShared\obj\Debug\net8.0\RabbitMQShared.AssemblyInfo.cs
+C:\Users\andre\Desktop\ProyectoRabbitMQFinal\RabbitMQShared\RabbitMQShared\obj\Debug\net8.0\RabbitMQShared.csproj.CoreCompileInputs.cache
+C:\Users\andre\Desktop\ProyectoRabbitMQFinal\RabbitMQShared\RabbitMQShared\obj\Debug\net8.0\RabbitMQShared.sourcelink.json
+C:\Users\andre\Desktop\ProyectoRabbitMQFinal\RabbitMQShared\RabbitMQShared\obj\Debug\net8.0\RabbitMQShared.dll
+C:\Users\andre\Desktop\ProyectoRabbitMQFinal\RabbitMQShared\RabbitMQShared\obj\Debug\net8.0\refint\RabbitMQShared.dll
+C:\Users\andre\Desktop\ProyectoRabbitMQFinal\RabbitMQShared\RabbitMQShared\obj\Debug\net8.0\RabbitMQShared.pdb
+C:\Users\andre\Desktop\ProyectoRabbitMQFinal\RabbitMQShared\RabbitMQShared\obj\Debug\net8.0\ref\RabbitMQShared.dll
